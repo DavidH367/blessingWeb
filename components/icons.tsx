@@ -3,14 +3,16 @@ import * as React from "react";
 import { IconSvgProps } from "@/types";
 
 export const Logo: React.FC<IconSvgProps> = ({
-  size = 160,
+  size = 90,
   height,
 }) => (
   <img
-    src="/logo_mebn_nombre.svg"
+    src="/nlp_logo_rectangular.png"
     alt="Logo"
-    height={size || height}
-    width={size || height}
+    className="max-w-full h-auto mt-2"
+    style={{
+      maxWidth: size || height, // Tamaño máximo dinámico
+    }}
   />
 );
 

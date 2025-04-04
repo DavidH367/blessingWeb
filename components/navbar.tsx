@@ -12,7 +12,7 @@ import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
 import { link as linkStyles } from "@heroui/theme";
-import {Divider} from "@heroui/divider";
+import { Divider } from "@heroui/divider";
 import NextLink from "next/link";
 import clsx from "clsx";
 
@@ -35,7 +35,7 @@ export const Navbar = () => {
         inputWrapper: "bg-default-100",
         input: "text-sm",
       }}
-      
+
       labelPlacement="outside"
       placeholder="Search..."
       startContent={
@@ -47,15 +47,14 @@ export const Navbar = () => {
 
   return (
     <HeroUINavbar maxWidth="full" position="sticky">
-      <NavbarContent className="basis-1/5" justify="start">
+      <NavbarContent className="basis-1/5 flex justify-center items-center">
         <NavbarBrand className="gap-3 max-w-fit">
-          <NextLink className="flex justify-center items-start gap-1" href="/">
+          <NextLink className="flex justify-center items-center gap-1" href="/">
             <Logo />
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
-  
-      {/* Enlaces y botón justificados a la derecha */}
+
       <NavbarContent className="basis-4/5" justify="end">
         <div className="hidden sm:flex gap-4">
           {siteConfig.navItems.map((item) => (
@@ -89,13 +88,13 @@ export const Navbar = () => {
           </Button>
         </NavbarItem>
       </NavbarContent>
-  
+
       {/* Menú móvil */}
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>
-  
+
       <NavbarMenu>
         {searchInput}
         <div className="mx-4 mt-2 flex flex-col gap-2">
@@ -106,8 +105,8 @@ export const Navbar = () => {
                   index === 2
                     ? "primary"
                     : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
+                      ? "danger"
+                      : "foreground"
                 }
                 href="#"
                 size="lg"
@@ -117,9 +116,9 @@ export const Navbar = () => {
             </NavbarMenuItem>
           ))}
         </div>
-        
+
       </NavbarMenu>
     </HeroUINavbar>
-    
+
   );
 };
