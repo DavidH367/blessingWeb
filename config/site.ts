@@ -7,7 +7,7 @@ export const siteConfig = {
     
     {
       label: "About us",
-      href: "/docs",
+      href: "/about",
     },
     {
       label: "Contact",
