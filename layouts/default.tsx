@@ -14,10 +14,10 @@ export default function DefaultLayout({
       <Head />
       <Navbar />
       <Divider className="m-2" />
-      <main className="container mx-auto max-w-full flex-grow pt-1">
+      <main className="container mx-auto max-w-full flex-grow flex-shrink-0 pt-1">
         {children}
       </main>
-      <footer className="w-full flex flex-col items-center justify-end py-3">
+      <footer className="w-full flex flex-col items-center justify-end py-3 flex-shrink-0">
         <div className="relative opacity-90 flex flex-col items-center">
           <Image
             alt="Main Image"

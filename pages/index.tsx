@@ -1,21 +1,78 @@
 import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
-import { Image, Card, CardBody, Button } from "@heroui/react";
+
+import { Card, CardHeader, CardFooter, Image, Button, Chip } from "@heroui/react";
 import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import {
   HeartFilledIcon,
 } from "@/components/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { collection, query, where, orderBy, limit, startAfter, getDocs, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 
 export default function IndexPage() {
-
+  const [children, setChildren] = useState<{ id: string;[key: string]: any }[]>([]);
+  const [lastVisible, setLastVisible] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+
+  const fetchChildren = async (nextPage = false) => {
+    setLoading(true);
+    try {
+      const childrenRef = collection(db, "nlp");
+      let q = query(
+        childrenRef,
+        where("sponsor_code", "==", "N/A"), // Filtrar niños sin sponsor
+        orderBy("dates_sponsorship", "asc"), // Ordenar por fecha de sponsorship
+        limit(4)
+      );
+
+      if (nextPage && lastVisible) {
+        q = query(
+          childrenRef,
+          where("sponsor_code", "==", "N/A"),
+          orderBy("dates_sponsorship", "asc"),
+          startAfter(lastVisible),
+          limit(4)
+        );
+      }
+
+      const querySnapshot = await getDocs(q);
+      const newChildren = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      console.log("Fetched children:", newChildren); // Verifica los datos obtenidos
+
+      setChildren(nextPage ? [...children, ...newChildren] : newChildren);
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    } catch (error) {
+      console.error("Error fetching children:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchChildren();
+  }, []);
+
+  const handleNextPage = () => {
+    setPage((prev) => prev + 1);
+    fetchChildren(true);
+  };
+
+  const handlePrevPage = () => {
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+      fetchChildren(false);
+    }
+  };
+
 
   const slides = [
     {
@@ -52,16 +109,15 @@ export default function IndexPage() {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-transform duration-700 ${
-              index === currentSlide ? "translate-x-0" : "translate-x-full"
-            }`}
+            className={`absolute inset-0 transition-transform duration-700 ${index === currentSlide ? "translate-x-0" : "translate-x-full"
+              }`}
             style={{
               transform:
                 index === currentSlide
                   ? "translateX(0)"
                   : index < currentSlide
-                  ? "translateX(-100%)"
-                  : "translateX(100%)",
+                    ? "translateX(-100%)"
+                    : "translateX(100%)",
             }}
           >
             <img
@@ -84,67 +140,158 @@ export default function IndexPage() {
                   {slide.description}
                 </p>
                 <Button
-            isExternal
-            as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100 mt-4"
-            href={siteConfig.links.sponsor}
-            startContent={<HeartFilledIcon className="text-danger" />}
-            variant="flat"
-          >
-            Sponsor now
-          </Button>
+                  isExternal
+                  as={Link}
+                  className="text-sm font-normal text-default-600 bg-default-100 mt-4"
+                  href={siteConfig.links.sponsor}
+                  startContent={<HeartFilledIcon className="text-danger" />}
+                  variant="flat"
+                >
+                  Sponsor now
+                </Button>
               </div>
             </div>
           </div>
         ))}
 
         <Button
-          onClick={prevSlide}
+          onPress={prevSlide}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
         >
           &#8249;
         </Button>
         <Button
-          onClick={nextSlide}
+          onPress={nextSlide}
           className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
         >
           &#8250;
         </Button>
       </div>
       <section>
-        <div className="container max-w-full flex-grow tracking-wide pb-32 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
+        <div className="container max-w-full flex-grow tracking-wide pb-24 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
           <p className="text-center text-justify font-bold text-2xl">Our reason to exist: To help children in Honduras in general educational and biblical formation.</p>
           <p className="text-center text-justify text-xl py-6 tracking-normal">The New Life Project is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
         </div>
       </section>
-      <div className="relative opacity-90">
-        <Image
-          alt="Main Image"
-          src="../background_sponsor.png"
-          radius="none"
-          width="100%"
-          height="600px"
-          style={{ objectFit: "cover" }}
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 h-[600px]">
-        <h2
-            className="text-black text-2xl md:text-6xl font-extrabold text-center "
+      <div className="relative opacity-90 ">
+        <div className="flex flex-col items-center justify-start text-center z-10">
+          <h2
+            className="text-black text-2xl md:text-6xl font-extrabold text-center"
             style={{
               fontFamily: "'Playfair Display', serif",
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)",
             }}
           >
             Sponsor a Child
           </h2>
-          <div className="container max-w-full tracking-wide py-8 px-6 md:pb-8 md:py-14 md:px-10 lg:px-20 xl:px-40 2xl:px-[400px]">
-            
-          </div>
+
+          <section className="container mx-auto py-10 px-4 mb-20">
+            <div className="flex flex-wrap justify-center gap-6">
+              {children.map((child) => (
+                <Card key={child.id} isFooterBlurred className="w-52 h-full">
+                  <CardHeader className="absolute z-10 flex-col items-center bg-slate-400/50 p-2">
+                    <h4 className="text-white text-tiny font-bold uppercase text-sm text-center">
+                      {child.firstname} {child.lastname}
+                    </h4>
+                  </CardHeader>
+                  {child.imageurl ? (
+                    <Image
+                      removeWrapper
+                      alt="Child Cards"
+                      className="z-0 w-[250px] h-[300px] scale-100 object-cover"
+                      src={child.imageurl}
+                    />
+                  ) : (
+                    <div className="z-0 w-[250px] h-[300px] scale-100 bg-gray-300 animate-pulse"></div>
+                  )}
+                  <CardFooter className="absolute bg-white/30 bottom-0 border-t-0 border-zinc-100/50 z-10 grid justify-items-center text-center p-1">
+                    <div>
+                      <p className="text-black text-tiny">
+                        Age: {Math.floor((Date.now() - new Date(child.date.seconds * 1000).getTime()) / (1000 * 60 * 60 * 24 * 365.25))}
+                      </p>
+                      <Button
+                        className="text-black text-tiny w-16 h-6 rounded-md bg-white"
+                        onPress={() => console.log("More Info", child)}
+                      >
+                        More Info
+                      </Button>
+                    </div>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+
+            <div className="flex justify-center gap-4 mt-6">
+              <Button
+                disabled={page === 1 || loading}
+                onPress={handlePrevPage}
+                className="bg-gray-300 text-black px-4 py-2 rounded"
+              >
+                Previous
+              </Button>
+              <Button
+                disabled={loading}
+                onPress={handleNextPage}
+                className="bg-gray-300 text-black px-4 py-2 rounded"
+              >
+                Next
+              </Button>
+            </div>
+          </section>
         </div>
       </div>
       <section>
-        
+        <div className="container max-w-full flex-grow tracking-wide pb-24 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
+          <p className="text-center text-justify font-bold text-4xl">Sponsoring a child at New Life Project School: why is it so important?</p>
+          <p className="text-center text-justify text-xl py-6 tracking-normal "><a className="text-blue-600 after:content-['_↗']" href="https://xmainc-bloom.kindful.com/?campaign=1295533">
+          The New Life Project</a> is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
+        </div>
       </section>
+      <section>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
 
+          <div className="flex flex-col items-center text-center">
+            <img
+              src="/4.png"
+              alt="Icon 4"
+              className="w-25 h-20 md:w-24 md:h-24"
+            />
+            <h3 className="text-lg md:text-xl font-bold mt-4">Niños</h3>
+            <p className="text-sm md:text-base mt-2">
+              Breve descripción del primer icono.
+            </p>
+          </div>
+
+
+          <div className="flex flex-col items-center text-center">
+            <img
+              src="/5.png"
+              alt="Icon 5"
+              className="w-20 h-25 md:w-24 md:h-24"
+            />
+            <h3 className="text-lg md:text-xl font-bold mt-4">Jesús</h3>
+            <p className="text-sm md:text-base mt-2">
+              Breve descripción del tercer icono.
+            </p>
+          </div>
+
+
+          <div className="flex flex-col items-center text-center">
+            <img
+              src="/6.png"
+              alt="Icon 6"
+              className="w-22 h-20 md:w-24 md:h-24"
+            />
+            <h3 className="text-lg md:text-xl font-bold mt-4">Escuela</h3>
+            <p className="text-sm md:text-base mt-2">
+              Breve descripción del segundo icono.
+            </p>
+          </div>
+
+
+        </div>
+      </section>
     </DefaultLayout>
   );
 }

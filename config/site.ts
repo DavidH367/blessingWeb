@@ -19,29 +19,29 @@ export const siteConfig = {
     },
     {
       label: "Donate",
-      href: "/about",
+      href: "/aboutsa",
     },
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Home",
+      href: "/",
     },
     {
-      label: "Dashboard",
+      label: "About us",
+      href: "/about",
+    },
+    {
+      label: "Contact",
       href: "/dashboard",
     },
     {
-      label: "Projects",
+      label: "Write",
       href: "/projects",
     },
     {
-      label: "Team",
+      label: "Donate",
       href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
     }
   ],
   links: {
