@@ -17,19 +17,25 @@ export default function IndexPage() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
-
-  const fetchChildren = async (nextPage = false) => {
+  const fetchChildren = async (nextPage = false, reset = false) => {
     setLoading(true);
     try {
       const childrenRef = collection(db, "nlp");
+  
+      // Obtener el total de niños para calcular las páginas
+      const totalSnapshot = await getDocs(query(childrenRef, where("sponsor_code", "==", "N/A")));
+      const totalChildren = totalSnapshot.size;
+      setTotalPages(Math.ceil(totalChildren / 4)); // 4 niños por página
+  
       let q = query(
         childrenRef,
-        where("sponsor_code", "==", "N/A"), // Filtrar niños sin sponsor
-        orderBy("dates_sponsorship", "asc"), // Ordenar por fecha de sponsorship
+        where("sponsor_code", "==", "N/A"),
+        orderBy("dates_sponsorship", "asc"),
         limit(4)
       );
-
+  
       if (nextPage && lastVisible) {
         q = query(
           childrenRef,
@@ -39,16 +45,23 @@ export default function IndexPage() {
           limit(4)
         );
       }
-
+  
       const querySnapshot = await getDocs(q);
+  
+      // Si no hay más datos, reinicia la paginación
+      if (querySnapshot.empty) {
+        console.log("No more children to fetch. Restarting pagination.");
+        setPage(1);
+        fetchChildren(false, true); // Reinicia desde la primera página
+        return;
+      }
+  
       const newChildren = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-
-      console.log("Fetched children:", newChildren); // Verifica los datos obtenidos
-
-      setChildren(nextPage ? [...children, ...newChildren] : newChildren);
+      
+      setChildren(reset ? newChildren : [...children, ...newChildren]);
       setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
     } catch (error) {
       console.error("Error fetching children:", error);
@@ -56,24 +69,23 @@ export default function IndexPage() {
       setLoading(false);
     }
   };
+  
+  const handleNextPage = () => {
+    setPage((prev) => prev + 1);
+    fetchChildren(true, true); // Reemplazar los datos al avanzar de página
+  };
+  
+  const handlePrevPage = () => {
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+      fetchChildren(false, true); // Reemplazar los datos al retroceder de página
+    }
+  };
 
   useEffect(() => {
     fetchChildren();
   }, []);
-
-  const handleNextPage = () => {
-    setPage((prev) => prev + 1);
-    fetchChildren(true);
-  };
-
-  const handlePrevPage = () => {
-    if (page > 1) {
-      setPage((prev) => prev - 1);
-      fetchChildren(false);
-    }
-  };
-
-
+  
   const slides = [
     {
       image: "../img_home.png",
@@ -160,6 +172,7 @@ export default function IndexPage() {
         >
           &#8249;
         </Button>
+        
         <Button
           onPress={nextSlide}
           className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"

@@ -11,7 +11,7 @@ export const siteConfig = {
     },
     {
       label: "Contact",
-      href: "/pricing",
+      href: "/contact",
     },
     {
       label: "Write",
