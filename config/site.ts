@@ -32,12 +32,12 @@ export const siteConfig = {
       href: "/about",
     },
     {
-      label: "Contact",
-      href: "/dashboard",
+      label: "New Life Project",
+      href: "/nlp",
     },
     {
-      label: "Write",
-      href: "/projects",
+      label: "Contact",
+      href: "/contact",
     },
     {
       label: "Donate",
