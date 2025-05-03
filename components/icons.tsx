@@ -3,11 +3,11 @@ import * as React from "react";
 import { IconSvgProps } from "@/types";
 
 export const Logo: React.FC<IconSvgProps> = ({
-  size = 90,
+  size = 160,
   height,
 }) => (
   <img
-    src="/nlp_logo_rectangular.png"
+    src="/main_logo.png"
     alt="Logo"
     className="max-w-full h-auto mt-2"
     style={{

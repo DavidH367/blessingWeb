@@ -10,12 +10,12 @@ export const siteConfig = {
       href: "/about",
     },
     {
-      label: "Contact",
-      href: "/contact",
+      label: "New Life Project",
+      href: "/nlp",
     },
     {
-      label: "Write",
-      href: "/blog",
+      label: "Contact",
+      href: "/contact",
     },
     {
       label: "Donate",
