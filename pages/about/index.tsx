@@ -5,14 +5,15 @@ import { Image, Card, CardBody } from "@heroui/react";
 export default function DocsPage() {
   return (
     <DefaultLayout>
-      <div className="relative opacity-90">
+      <div className="relative opacity-100">
+      <div className="absolute inset-0 bg-blue-500 opacity-65 z-10"></div>
         <Image
           alt="Main Image"
-          src="../img_main.png"
+          src="../about_.jpeg"
           radius="none"
           width="100%"
           height="400px"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", opacity: 0.6 }}
         />
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <h1
@@ -26,6 +27,7 @@ export default function DocsPage() {
           </h1>
         </div>
       </div>
+      
       <section>
         <div className="container max-w-full flex-grow tracking-wide pb-32 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
           <p className="text-center text-justify font-bold text-2xl">Our reason to exist: To help children in Honduras in general educational and biblical formation.</p>
@@ -33,13 +35,14 @@ export default function DocsPage() {
         </div>
       </section>
       <div className="relative opacity-90">
+        <div className="absolute inset-0 bg-blue-500 opacity-35 z-10"></div>
         <Image
           alt="Main Image"
-          src="../img_second.png"
+          src="../about_impact.png"
           radius="none"
           width="100%"
           height="600px"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", opacity: 0.6 }}
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 h-[600px]">
           <h1
@@ -49,7 +52,7 @@ export default function DocsPage() {
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
             }}
           >
-            Kids and Education
+           Blessing to the Nations and its impact
           </h1>
           <div className="container max-w-full tracking-wide py-8 px-6 md:pb-8 md:py-14 md:px-10 lg:px-20 xl:px-40 2xl:px-[400px]">
             <p className="font-bold text-lg md:text-2xl text-white">
@@ -71,7 +74,7 @@ export default function DocsPage() {
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
             }}
           >
-            New Life Project, today
+            Serving others
           </h2>
           <p className="text-justify text-md md:text-xl py-6 tracking-normal text-black">
             Esta alianza beneficia a los estudiantes a que mejoren su rendimiento y adaptación,
