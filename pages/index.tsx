@@ -37,10 +37,10 @@ export default function IndexPage() {
               Bringing blessing to all Nations
             </h1>
             <p className="text-shadow-lg text-white text-left font-semibold text-lg sm:text-xl md:text-2xl">
-                We mobilize with purpose, obeying the Great Commission, to be a light amid darkness.
+              We mobilize with purpose, obeying the Great Commission, to be a light amid darkness.
             </p>
             <p className="text-shadow-lg text-white text-left text-lg sm:text-xl md:text-2xl">
-                Matthew 28 and Acts 1:8
+              Matthew 28 and Acts 1:8
             </p>
             <Button
               isExternal
@@ -89,7 +89,7 @@ export default function IndexPage() {
           </CardHeader>
           <Divider />
           <CardBody>
-            <p>Brief description: Make beautiful websites regardless of your design experience.</p>
+            <p>IMSH is a school created to contribute to the integral formation of men and women called to go to the unreached (Romans 10:14-15).</p>
           </CardBody>
           <Divider />
           <CardFooter>
@@ -116,7 +116,7 @@ export default function IndexPage() {
           </CardHeader>
           <Divider />
           <CardBody>
-            <p>Brief description: Make beautiful websites regardless of your design experience.</p>
+            <p>NLP is a school that seeks to form and guide children to grow up with Christ-like character, empowering them to follow their God-given passions and purpose.</p>
           </CardBody>
           <Divider />
           <CardFooter>
@@ -185,7 +185,7 @@ export default function IndexPage() {
               />
               <h3 className="text-2xl md:text-3xl font-bold mt-4 text-white">Serve</h3>
               <p className="text-sm md:text-base mt-2 text-white">
-                At MEBN, we serve among peoples, tribes, and languages with one goal: 
+                At MEBN, we serve among peoples, tribes, and languages with one goal:
                 to do what Jesus did—bringing faith and hope to those who most need to experience the love of God.
               </p>
             </div>
@@ -213,7 +213,7 @@ export default function IndexPage() {
               />
               <h3 className="text-2xl md:text-3xl font-bold mt-4 text-white">Educate</h3>
               <p className="text-sm md:text-base mt-2 text-white">
-                We believe that training before sending is essential. 
+                We believe that training before sending is essential.
                 A well-prepared missionary is equipped to face the challenges of the mission field with strong faith and a willing heart.
               </p>
             </div>
@@ -223,10 +223,97 @@ export default function IndexPage() {
         </div>
       </div>
       <section>
-        <div className="container max-w-full flex-grow tracking-wide pb-24 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
-          <p className="text-center text-justify font-bold text-4xl">Testimonials</p>
+        <div className="container max-w-full flex-grow tracking-wide pb-6 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
+          <p className="text-center text-justify font-bold text-4xl">Updates</p>
           <p className="text-center text-justify text-xl py-6 tracking-normal "><a className="text-blue-600 after:content-['_↗']" href="https://xmainc-bloom.kindful.com/?campaign=1295533">
-          The New Life Project</a> is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
+            The New Life Project</a> is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
+        </div>
+      </section>
+      <section>
+        <div className="w-full gap-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 px-8 pb-24">
+          <Card isFooterBlurred className="w-full h-[250px]">
+            <CardHeader className="absolute z-10 top-1 flex-col items-start">
+              <p className="text-tiny text-white/60 uppercase font-bold">Notice subject:</p>
+              <h4 className="text-white/90 font-medium text-xl">Notice Tittle:</h4>
+            </CardHeader>
+            <Image
+              removeWrapper
+              alt="Relaxing app background"
+              className="z-0 w-full h-full object-cover"
+              src="https://heroui.com/images/album-cover.png"
+            />
+            <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+              <div className="flex flex-grow gap-2 items-center">
+                <Image
+                  alt="Breathing app icon"
+                  className="rounded-full w-10 h-11 bg-black"
+                  src="https://heroui.com/images/breathing-app-icon.jpeg"
+                />
+                <div className="flex flex-col">
+                  <p className="text-tiny text-white/60">Brief notice description</p>
+                </div>
+              </div>
+              <Button radius="full" size="sm">
+                More Info
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card isFooterBlurred className="w-full h-[250px]">
+            <CardHeader className="absolute z-10 top-1 flex-col items-start">
+              <p className="text-tiny text-white/60 uppercase font-bold">Notice subject:</p>
+              <h4 className="text-white/90 font-medium text-xl">Notice Tittle:</h4>
+            </CardHeader>
+            <Image
+              removeWrapper
+              alt="Relaxing app background"
+              className="z-0 w-full h-full object-cover"
+              src="https://heroui.com/images/album-cover.png"
+            />
+            <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+              <div className="flex flex-grow gap-2 items-center">
+                <Image
+                  alt="Breathing app icon"
+                  className="rounded-full w-10 h-11 bg-black"
+                  src="https://heroui.com/images/breathing-app-icon.jpeg"
+                />
+                <div className="flex flex-col">
+                  <p className="text-tiny text-white/60">Brief notice description</p>
+                </div>
+              </div>
+              <Button radius="full" size="sm">
+                More Info
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card isFooterBlurred className="w-full h-[250px]">
+            <CardHeader className="absolute z-10 top-1 flex-col items-start">
+              <p className="text-tiny text-white/60 uppercase font-bold">Notice subject:</p>
+              <h4 className="text-white/90 font-medium text-xl">Notice Tittle:</h4>
+            </CardHeader>
+            <Image
+              removeWrapper
+              alt="Relaxing app background"
+              className="z-0 w-full h-full object-cover"
+              src="https://heroui.com/images/album-cover.png"
+            />
+            <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+              <div className="flex flex-grow gap-2 items-center">
+                <Image
+                  alt="Breathing app icon"
+                  className="rounded-full w-10 h-11 bg-black"
+                  src="https://heroui.com/images/breathing-app-icon.jpeg"
+                />
+                <div className="flex flex-col">
+                  <p className="text-tiny text-white/60">Brief notice description</p>
+                </div>
+              </div>
+              <Button radius="full" size="sm">
+                More Info
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
       </section>
     </DefaultLayout>
