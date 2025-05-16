@@ -17,7 +17,6 @@ import NextLink from "next/link";
 import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
 import {
   HeartFilledIcon,
   SearchIcon,
@@ -70,7 +69,6 @@ export const Navbar = () => {
           ))}
         </div>
         <NavbarItem className="hidden sm:flex gap-2">
-          <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Button

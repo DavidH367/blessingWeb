@@ -30,8 +30,9 @@ export default function DocsPage() {
       
       <section>
         <div className="container max-w-full flex-grow tracking-wide pb-32 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
-          <p className="text-center text-justify font-bold text-2xl">Our reason to exist: To help children in Honduras in general educational and biblical formation.</p>
-          <p className="text-center text-justify text-xl py-6 tracking-normal">The New Life Project is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
+          <p className="text-center text-justify font-bold text-2xl">Our purpose: Is to train and mobilize passionate disciples of Christ building strategic partnerships with pastors, leaders, churches, and like-minded organizations.</p>
+          <p className="text-center text-justify text-xl py-6 tracking-normal"> 
+            We believe that training before sending is essential. A well-prepared missionary is equipped to face the challenges of the mission field with strong faith and a willing heart.</p>
         </div>
       </section>
       <div className="relative opacity-90">
@@ -46,7 +47,7 @@ export default function DocsPage() {
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 h-[600px]">
           <h1
-            className="text-white text-2xl md:text-6xl font-extrabold"
+            className="text-white text-3xl md:text-6xl font-extrabold"
             style={{
               fontFamily: "'Playfair Display', serif",
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
@@ -56,10 +57,11 @@ export default function DocsPage() {
           </h1>
           <div className="container max-w-full tracking-wide py-8 px-6 md:pb-8 md:py-14 md:px-10 lg:px-20 xl:px-40 2xl:px-[400px]">
             <p className="font-bold text-lg md:text-2xl text-white">
-              La educación es un proceso continuo que involucra tanto a la escuela como a la familia. Cuando ambos trabajan juntos, los niños y jóvenes desarrollan mejor sus habilidades intelectuales, emocionales y sociales.
+             We aim to contribute to the spiritual and social development of children, youth, and adults transformed by the Word of God.
             </p>
             <p className="text-justify text-md md:text-xl py-6 tracking-normal text-white">
-              Esta alianza beneficia a los estudiantes a que mejoren su rendimiento y adaptación, los padres entienden mejor el desarrollo de sus hijos, y las escuelas crean un mejor ambiente de aprendizaje. Los padres tienen un rol clave en la prevención de problemas y en el apoyo educativo.
+              We believe the effect of this movement will be multiplicative and generational, 
+              leaving behind a lasting legacy of hope in Christ among those who live without God, without faith, and without hope.
             </p>
 
           </div>
@@ -77,22 +79,22 @@ export default function DocsPage() {
             Serving others
           </h2>
           <p className="text-justify text-md md:text-xl py-6 tracking-normal text-black">
-            Esta alianza beneficia a los estudiantes a que mejoren su rendimiento y adaptación,
-            los padres entienden mejor el desarrollo de sus hijos,
-            y las escuelas crean un mejor ambiente de aprendizaje.
+           At MEBN, we serve among peoples, tribes, and languages with one goal: 
+           to do what Jesus did—bringing faith and hope to those who most need to experience the love of God.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
 
           <div className="flex flex-col items-center text-center">
             <img
-              src="/1.png"
+              src="/7.png"
               alt="Icon 1"
               className="w-20 h-20 md:w-24 md:h-24"
             />
-            <h3 className="text-lg md:text-xl font-bold mt-4">Niños</h3>
+            <h3 className="text-lg md:text-xl font-bold mt-4">Community</h3>
             <p className="text-sm md:text-base mt-2">
-              Breve descripción del primer icono.
+              The true Gospel is lived out with consistency between what we say and what we do. That’s why, in every circumstance, 
+              we follow Jesus' example to genuinely connect with people.
             </p>
           </div>
 
@@ -103,9 +105,9 @@ export default function DocsPage() {
               alt="Icon 3"
               className="w-20 h-20 md:w-24 md:h-24"
             />
-            <h3 className="text-lg md:text-xl font-bold mt-4">Dios</h3>
+            <h3 className="text-lg md:text-xl font-bold mt-4">God</h3>
             <p className="text-sm md:text-base mt-2">
-              Breve descripción del tercer icono.
+              We aim to contribute to the spiritual and social development of children, youth, and adults transformed by the Word of God. 
             </p>
           </div>
 
@@ -116,13 +118,13 @@ export default function DocsPage() {
               alt="Icon 2"
               className="w-20 h-20 md:w-24 md:h-24"
             />
-            <h3 className="text-lg md:text-xl font-bold mt-4">Educación</h3>
+            <h3 className="text-lg md:text-xl font-bold mt-4">Education</h3>
             <p className="text-sm md:text-base mt-2">
-              Breve descripción del segundo icono.
+              We believe the effect of this movement will be multiplicative and generational, 
+              leaving behind a lasting legacy of hope in Christ among those who live without God, 
+              without faith, and without hope.
             </p>
           </div>
-
-
         </div>
       </section>
     </DefaultLayout>

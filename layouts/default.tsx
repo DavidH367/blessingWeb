@@ -18,7 +18,9 @@ export default function DefaultLayout({
         {children}
       </main>
       <footer className="w-full flex flex-col items-center justify-end py-3 flex-shrink-0">
+        
         <div className="relative opacity-90 flex flex-col items-center">
+          
           <Image
             alt="Main Image"
             src="../img_footer.png"
@@ -27,6 +29,8 @@ export default function DefaultLayout({
             height="100px"
             style={{ objectFit: "cover" }}
           />
+
+          <div className="w-full" style={{ height: "80px", backgroundColor: "#012d67" }} />
         </div>
         <Link
           isExternal
@@ -34,9 +38,10 @@ export default function DefaultLayout({
           href="https://xmaonline.com/from-student-to-teacher/"
           title="xma homepage"
         >
-          <span className="text-default-600">All Rights Reserved</span>
-          <p className="text-primary">Ministerio Bendicion a las Naciones</p>
+          <span className="text-default-600">© Copyright All Rights Reserved</span>
+          <p className="text-primary">Ministerio Bendicion a las Naciones 2008-2025</p>
         </Link>
+        
       </footer>
     </div>
   );

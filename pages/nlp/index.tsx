@@ -91,7 +91,7 @@ export default function NlpPage() {
       image: "../img_home.png",
       title: "Sponsor a Child",
       description:
-        "Our reason to exist: To help children in Honduras in general educational and biblical formation.",
+        "New Life Project School is a ministry that transforms children through education and faith.",
     },
     {
       image: "../img_second.png",
@@ -182,7 +182,7 @@ export default function NlpPage() {
       </div>
       <section>
         <div className="container max-w-full flex-grow tracking-wide pb-24 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
-          <p className="text-center text-justify font-bold text-2xl">Our reason to exist: To help children in Honduras in general educational and biblical formation.</p>
+          <p className="text-center text-justify font-bold text-2xl">Proyecto Nueva Vida exists to shape and guide children so that they grow with Christ-like character, empowering them to follow their God-given passions and purpose.</p>
           <p className="text-center text-justify text-xl py-6 tracking-normal">The New Life Project is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
         </div>
       </section>
@@ -257,12 +257,14 @@ export default function NlpPage() {
         <div className="container max-w-full flex-grow tracking-wide pb-24 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
           <p className="text-center text-justify font-bold text-4xl">Sponsoring a child at New Life Project School: why is it so important?</p>
           <p className="text-center text-justify text-xl py-6 tracking-normal "><a className="text-blue-600 after:content-['_↗']" href="https://xmainc-bloom.kindful.com/?campaign=1295533">
-          The New Life Project</a> is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
+          The New Life Project</a> Sponsoring a child from PNV not only transforms their life forever, 
+          it also opens their heart to the love and hope that can only be found in Jesus Christ. 
+          It’s more than an act of generosity — it’s planting eternity in the heart of a child.</p>
         </div>
       </section>
       <section>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 p-6">
 
           <div className="flex flex-col items-center text-center">
             <img
@@ -272,7 +274,8 @@ export default function NlpPage() {
             />
             <h3 className="text-lg md:text-xl font-bold mt-4">Niños</h3>
             <p className="text-sm md:text-base mt-2">
-              Breve descripción del primer icono.
+              The children of Proyecto Nueva Vida are a living reflection of the mercy and grace we receive through salvation in Christ. 
+              He gives us new life, and our desire is to offer that same opportunity to the children in our community.
             </p>
           </div>
 
@@ -283,9 +286,9 @@ export default function NlpPage() {
               alt="Icon 5"
               className="w-20 h-25 md:w-24 md:h-24"
             />
-            <h3 className="text-lg md:text-xl font-bold mt-4">Jesús</h3>
+            <h3 className="text-lg md:text-xl font-bold mt-4">Jesus</h3>
             <p className="text-sm md:text-base mt-2">
-              Breve descripción del tercer icono.
+              Jesus is our everything. Nothing is more important than Him. Everything we do has one purpose: to glorify His name.
             </p>
           </div>
 
@@ -296,9 +299,9 @@ export default function NlpPage() {
               alt="Icon 6"
               className="w-22 h-20 md:w-24 md:h-24"
             />
-            <h3 className="text-lg md:text-xl font-bold mt-4">Escuela</h3>
+            <h3 className="text-lg md:text-xl font-bold mt-4">School</h3>
             <p className="text-sm md:text-base mt-2">
-              Breve descripción del segundo icono.
+              Education transforms lives, opening doors to new opportunities. Families can now dream without limits and walk in faith toward a better future.
             </p>
           </div>
 

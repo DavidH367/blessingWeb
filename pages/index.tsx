@@ -37,7 +37,10 @@ export default function IndexPage() {
               Bringing blessing to all Nations
             </h1>
             <p className="text-shadow-lg text-white text-left font-semibold text-lg sm:text-xl md:text-2xl">
-              Description
+                We mobilize with purpose, obeying the Great Commission, to be a light amid darkness.
+            </p>
+            <p className="text-shadow-lg text-white text-left text-lg sm:text-xl md:text-2xl">
+                Matthew 28 and Acts 1:8
             </p>
             <Button
               isExternal
@@ -64,10 +67,8 @@ export default function IndexPage() {
           >
             Our Mision
           </h2>
-          <p className="text-justify text-md md:text-xl py-6 tracking-normal text-black">
-            Esta alianza beneficia a los estudiantes a que mejoren su rendimiento y adaptación,
-            los padres entienden mejor el desarrollo de sus hijos,
-            y las escuelas crean un mejor ambiente de aprendizaje.
+          <p className="text-justify text-xl md:text-3xl py-6 tracking-normal text-black">
+            To carry out practical missions centered on Christ, moving in faith and love, in service to people and communities in need.
           </p>
         </div>
       </section>
@@ -151,14 +152,14 @@ export default function IndexPage() {
           </CardFooter>
         </Card>
       </div>
-      <div className="relative">
+      <div className="relative min-h-[700px] sm:min-h[1000px] md:h-[800px] h-auto">
         <div className="absolute inset-0 bg-blue-900 z-10"></div>
         <Image
           alt="Main Image"
           src="../whatwedo.jpg"
           radius="none"
           width="100%"
-          height="800px"
+          height="1000px"
           style={{
             objectFit: "cover",
             opacity: 0.1,
@@ -166,7 +167,7 @@ export default function IndexPage() {
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 min-h-[800px] md:min-h-screen p-6">
           <h1
-            className="text-white text-2xl md:text-6xl font-extrabold"
+            className="text-white text-4xl md:text-6xl font-extrabold"
             style={{
               fontFamily: "'Playfair Display', serif",
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
@@ -178,28 +179,30 @@ export default function IndexPage() {
 
             <div className="flex flex-col items-center text-center">
               <Image
-                src="/connect.png"
-                alt="Icon 4"
-                className="w-25 h-20 md:w-36 md:h-36"
-              />
-              <h3 className="text-2xl md:text-3xl font-bold mt-4 text-white">Connect</h3>
-              <p className="text-sm md:text-base mt-2 text-white">
-                Breve descripción del primer icono.
-              </p>
-            </div>
-
-
-            <div className="flex flex-col items-center text-center">
-              <Image
                 src="/serve.png"
                 alt="Icon 5"
                 className="w-20 h-25 md:w-40 md:h-36"
               />
               <h3 className="text-2xl md:text-3xl font-bold mt-4 text-white">Serve</h3>
               <p className="text-sm md:text-base mt-2 text-white">
-                Breve descripción del tercer icono.
+                At MEBN, we serve among peoples, tribes, and languages with one goal: 
+                to do what Jesus did—bringing faith and hope to those who most need to experience the love of God.
               </p>
             </div>
+
+            <div className="flex flex-col items-center text-center">
+              <Image
+                src="/connect.png"
+                alt="Icon 4"
+                className="w-25 h-20 md:w-36 md:h-36"
+              />
+              <h3 className="text-2xl md:text-3xl font-bold mt-4 text-white">Connect</h3>
+              <p className="text-sm md:text-base mt-2 text-white">
+                Jesus is our supreme model of missionary leadership. He taught that loving your neighbor is at the core of the Gospel.
+              </p>
+            </div>
+
+
 
 
             <div className="flex flex-col items-center text-center">
@@ -210,7 +213,8 @@ export default function IndexPage() {
               />
               <h3 className="text-2xl md:text-3xl font-bold mt-4 text-white">Educate</h3>
               <p className="text-sm md:text-base mt-2 text-white">
-                Breve descripción del segundo icono.
+                We believe that training before sending is essential. 
+                A well-prepared missionary is equipped to face the challenges of the mission field with strong faith and a willing heart.
               </p>
             </div>
 
