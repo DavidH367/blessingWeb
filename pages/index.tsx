@@ -1,5 +1,4 @@
 import { Link } from "@heroui/link";
-
 import { Card, CardHeader, CardBody, CardFooter, Image, Button, Chip, Divider } from "@heroui/react";
 import { siteConfig } from "@/config/site";
 import DefaultLayout from "@/layouts/default";
@@ -9,16 +8,28 @@ import {
 import { useEffect, useState } from "react";
 import { collection, query, where, orderBy, limit, startAfter, getDocs, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@heroui/react";
+import React from "react";
 
 export default function IndexPage() {
 
   const [notices, setNotices] = useState<any[]>([]);
   const [imageIndexes, setImageIndexes] = useState<number[]>([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedNotice, setSelectedNotice] = useState<any>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
 
   useEffect(() => {
     const fetchNotices = async () => {
-      const q = query(collection(db, "news"),where("type", "==", "Necesidad"), orderBy("date", "desc"), limit(3));
+      const q = query(collection(db, "news"), where("type", "==", "Necesidad"), orderBy("date", "desc"), limit(3));
       const querySnapshot = await getDocs(q);
       const docs = querySnapshot.docs.map(doc => doc.data());
       setNotices(docs);
@@ -61,7 +72,7 @@ export default function IndexPage() {
           src="../MainBTTN.png"
           radius="none"
           width="100%"
-          height="600px"
+          height="700px"
           style={{ objectFit: "cover" }}
         />
         <div className="absolute inset-0 bg-blue-500 opacity-25 z-10"></div>
@@ -264,17 +275,29 @@ export default function IndexPage() {
       </div>
       <section>
         <div className="container max-w-full flex-grow tracking-wide pb-6 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
-          <p className="text-center text-justify font-bold text-4xl">Updates</p>
-          <p className="text-center text-justify text-xl py-6 tracking-normal "><a className="text-blue-600 after:content-['_↗']" href="https://xmainc-bloom.kindful.com/?campaign=1295533">
-            The New Life Project</a> is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
+          <p className="text-center text-justify font-bold text-4xl">Recent Updates</p>
+          <p className="text-center text-justify text-xl py-6 tracking-normal "><a className="text-blue-600 after:content-['_↗']"
+            href="https://xmainc-bloom.kindful.com/?campaign=1295532">
+            Blessing to the Nations Ministry</a> we have identified several key needs for the proper functioning of our organization.
+            These include urgent repairs and improvements to the facilities where the children receive classes,
+            in order to provide a safe and dignified learning environment.
+            In addition, we continue to need support in general areas such as administrative supplies,
+            basic maintenance and educational resources. We are deeply grateful for your continued support in this mission.</p>
         </div>
       </section>
       <section>
-        <div className="w-full gap-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 px-8 pb-24">
+        <div className={`w-full gap-6 grid px-8 pb-24
+      ${notices.length === 1
+            ? "grid-cols-1 justify-items-center"
+            : notices.length === 2
+              ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 justify-items-center"
+              : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3"
+          }
+      `}>
           {notices.map((notice, idx) => {
             const images = getImages(notice);
             return (
-              <Card key={idx} isFooterBlurred className="w-full h-[300px] flex flex-col">
+              <Card key={idx} isFooterBlurred className="w-full h-[250px] flex flex-col max-w-[400px]">
                 <CardHeader className="absolute z-10 top-1 flex-col items-start bg-black/10 top-0">
                   <p className="text-tiny text-white/60 uppercase font-bold">{notice.minName}</p>
                   <h4 className="text-white/90 font-medium text-xl">{notice.new_title}</h4>
@@ -312,16 +335,98 @@ export default function IndexPage() {
                 <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100 w-full">
                   <div className="flex flex-grow gap-2 items-center">
                     <div className="flex flex-col">
-                      <p className="text-tiny text-white/100">Budget needed: ${notice.act_bugdet}</p>
+                      <p className="text-tiny text-white/100">Budget needed: ${Number(notice.act_bugdet).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                     </div>
                   </div>
-                  <Button radius="full" size="sm">
+                  <Button
+                    radius="full"
+                    size="sm"
+                    onPress={() => {
+                      setSelectedNotice(notice);
+                      onOpen();
+                    }}
+                  >
                     More info
                   </Button>
                 </CardFooter>
               </Card>
             );
           })}
+
+          <Modal isOpen={isOpen} onClose={onClose} backdrop="blur" size="5xl" scrollBehavior="inside">
+            <ModalContent>
+              {(onClose) => (
+                selectedNotice && (
+                  <>
+                    <ModalHeader className="flex flex-col gap-1 text-2xl font-bold">
+                      {selectedNotice.new_title}
+                    </ModalHeader>
+                    <ModalBody>
+                      <div className="">
+                        <span className="text-xl"><a className="font-bold">Ministry: {selectedNotice.minName}</a> </span>
+                      </div>
+                      <div className="">
+                        <div className="">
+                          <span className="font-bold">Description:</span>
+                          <br />
+                          {selectedNotice.description}
+                        </div>
+                        <div className="">
+                          <span className="">
+                            <a className="font-bold">Budged needed:</a>
+                            <a className="text-green-600 font-bold">$ {Number(selectedNotice.act_bugdet).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</a>
+                          </span>
+                        </div>
+                        <span className="font-bold">Address:</span> {selectedNotice.zone}
+                      </div>
+                      <div className="mb-2">
+                        <span className="font-bold">Date:</span> {selectedNotice.date && new Date(selectedNotice.date.seconds * 1000).toLocaleDateString()}
+                      </div>
+                      <div className="mb-2">
+                        <div className="flex gap-2 flex-wrap mt-2 justify-center">
+                          {selectedNotice.images &&
+                            (Object.values(selectedNotice.images) as string[]).map((url, i) => (
+                              <Image
+                                key={i}
+                                src={url}
+                                alt={`Imagen ${i + 1}`}
+                                width={320}
+                                height={220}
+                                className="rounded-2xl object-contain bg-white"
+                                style={{ maxWidth: 480, maxHeight: 320 }}
+                                onClick={() => setSelectedImage(url)}
+                              />
+                            ))}
+                        </div>
+                        {selectedImage && (
+                          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+                            <button
+                              className="absolute top-6 right-8 text-white text-4xl font-bold z-50"
+                              onClick={() => setSelectedImage(null)}
+                              aria-label="Cerrar"
+                            >
+                              &times;
+                            </button>
+                            <img
+                              src={selectedImage}
+                              alt="Imagen ampliada"
+                              className="max-w-[90vw] max-h-[80vh] rounded-2xl shadow-lg"
+                              style={{ objectFit: "contain", background: "white" }}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="danger" variant="light" onPress={onClose}>
+                        Close
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )
+              )}
+            </ModalContent>
+          </Modal>
         </div>
       </section>
     </DefaultLayout>

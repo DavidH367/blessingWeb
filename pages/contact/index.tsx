@@ -44,7 +44,7 @@ export default function DocsPage() {
           <div className="container max-w-full flex-grow tracking-wide pb-32 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
             <p className="text-center text-justify font-bold text-3xl">Contact Information</p>
             <p className="flex flex-col sm:flex-row items-center justify-start text-lg sm:text-xl md:text-2xl py-4 sm:py-6 tracking-normal px-2 sm:px-0">
-              <FiPhone className="mr-2" /> <span className="font-bold">Telephone :</span> +504 9999-99990
+              <FiPhone className="mr-2" /> <span className="font-bold">Telephone :</span><a>+504 9999-9999</a> 
             </p>
             <p className="flex flex-col sm:flex-row items-center justify-start text-lg sm:text-xl md:text-2xl py-4 sm:py-6 tracking-normal px-2 sm:px-0">
               <FiMail className="mr-2" /> <span className="font-bold">EMail :</span> blessingtothenations@gmail.com
