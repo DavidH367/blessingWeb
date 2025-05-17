@@ -267,12 +267,12 @@ export default function NlpPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 p-6">
 
           <div className="flex flex-col items-center text-center">
-            <img
+            <img 
               src="/4.png"
               alt="Icon 4"
               className="w-25 h-20 md:w-24 md:h-24"
             />
-            <h3 className="text-lg md:text-xl font-bold mt-4">Niños</h3>
+            <h3 className="text-lg md:text-xl font-bold mt-4">Kids</h3>
             <p className="text-sm md:text-base mt-2">
               The children of Proyecto Nueva Vida are a living reflection of the mercy and grace we receive through salvation in Christ. 
               He gives us new life, and our desire is to offer that same opportunity to the children in our community.

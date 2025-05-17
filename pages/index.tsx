@@ -13,6 +13,46 @@ import { db } from "@/lib/firebase";
 
 export default function IndexPage() {
 
+  const [notices, setNotices] = useState<any[]>([]);
+  const [imageIndexes, setImageIndexes] = useState<number[]>([]);
+
+  useEffect(() => {
+    const fetchNotices = async () => {
+      const q = query(collection(db, "news"),where("type", "==", "Necesidad"), orderBy("date", "desc"), limit(3));
+      const querySnapshot = await getDocs(q);
+      const docs = querySnapshot.docs.map(doc => doc.data());
+      setNotices(docs);
+      setImageIndexes(Array(docs.length).fill(0));
+    };
+    fetchNotices();
+  }, []);
+
+  const handlePrev = (cardIdx: number) => {
+    setImageIndexes(prev =>
+      prev.map((idx, i) =>
+        i === cardIdx
+          ? (idx === 0 ? getImages(notices[i]).length - 1 : idx - 1)
+          : idx
+      )
+    );
+  };
+
+  const handleNext = (cardIdx: number) => {
+    setImageIndexes(prev =>
+      prev.map((idx, i) =>
+        i === cardIdx
+          ? (idx === getImages(notices[i]).length - 1 ? 0 : idx + 1)
+          : idx
+      )
+    );
+  };
+
+  // Helper para obtener array de urls de imágenes
+  const getImages = (notice: any) => {
+    if (!notice?.images) return [];
+    return Object.values(notice.images).filter(Boolean);
+  };
+
   return (
     <DefaultLayout>
       <div className="relative w-full h-[550px] overflow-hidden">
@@ -231,89 +271,57 @@ export default function IndexPage() {
       </section>
       <section>
         <div className="w-full gap-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 px-8 pb-24">
-          <Card isFooterBlurred className="w-full h-[250px]">
-            <CardHeader className="absolute z-10 top-1 flex-col items-start">
-              <p className="text-tiny text-white/60 uppercase font-bold">Notice subject:</p>
-              <h4 className="text-white/90 font-medium text-xl">Notice Tittle:</h4>
-            </CardHeader>
-            <Image
-              removeWrapper
-              alt="Relaxing app background"
-              className="z-0 w-full h-full object-cover"
-              src="https://heroui.com/images/album-cover.png"
-            />
-            <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
-              <div className="flex flex-grow gap-2 items-center">
-                <Image
-                  alt="Breathing app icon"
-                  className="rounded-full w-10 h-11 bg-black"
-                  src="https://heroui.com/images/breathing-app-icon.jpeg"
-                />
-                <div className="flex flex-col">
-                  <p className="text-tiny text-white/60">Brief notice description</p>
+          {notices.map((notice, idx) => {
+            const images = getImages(notice);
+            return (
+              <Card key={idx} isFooterBlurred className="w-full h-[300px] flex flex-col">
+                <CardHeader className="absolute z-10 top-1 flex-col items-start bg-black/10 top-0">
+                  <p className="text-tiny text-white/60 uppercase font-bold">{notice.minName}</p>
+                  <h4 className="text-white/90 font-medium text-xl">{notice.new_title}</h4>
+                </CardHeader>
+                <div className="relative w-full h-full flex-1 flex items-center justify-center">
+                  {images.length > 0 && (
+                    <>
+                      <Image
+                        removeWrapper
+                        alt={notice.new_title}
+                        className="z-0 w-full h-full object-cover"
+                        src={images[imageIndexes[idx]] as string}
+                      />
+                      {images.length > 1 && (
+                        <>
+                          <button
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-1"
+                            onClick={() => handlePrev(idx)}
+                            type="button"
+                          >
+                            &#8592;
+                          </button>
+                          <button
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-1"
+                            onClick={() => handleNext(idx)}
+                            type="button"
+                          >
+                            &#8594;
+                          </button>
+                        </>
+                      )}
+                    </>
+                  )}
                 </div>
-              </div>
-              <Button radius="full" size="sm">
-                More Info
-              </Button>
-            </CardFooter>
-          </Card>
-
-          <Card isFooterBlurred className="w-full h-[250px]">
-            <CardHeader className="absolute z-10 top-1 flex-col items-start">
-              <p className="text-tiny text-white/60 uppercase font-bold">Notice subject:</p>
-              <h4 className="text-white/90 font-medium text-xl">Notice Tittle:</h4>
-            </CardHeader>
-            <Image
-              removeWrapper
-              alt="Relaxing app background"
-              className="z-0 w-full h-full object-cover"
-              src="https://heroui.com/images/album-cover.png"
-            />
-            <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
-              <div className="flex flex-grow gap-2 items-center">
-                <Image
-                  alt="Breathing app icon"
-                  className="rounded-full w-10 h-11 bg-black"
-                  src="https://heroui.com/images/breathing-app-icon.jpeg"
-                />
-                <div className="flex flex-col">
-                  <p className="text-tiny text-white/60">Brief notice description</p>
-                </div>
-              </div>
-              <Button radius="full" size="sm">
-                More Info
-              </Button>
-            </CardFooter>
-          </Card>
-
-          <Card isFooterBlurred className="w-full h-[250px]">
-            <CardHeader className="absolute z-10 top-1 flex-col items-start">
-              <p className="text-tiny text-white/60 uppercase font-bold">Notice subject:</p>
-              <h4 className="text-white/90 font-medium text-xl">Notice Tittle:</h4>
-            </CardHeader>
-            <Image
-              removeWrapper
-              alt="Relaxing app background"
-              className="z-0 w-full h-full object-cover"
-              src="https://heroui.com/images/album-cover.png"
-            />
-            <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
-              <div className="flex flex-grow gap-2 items-center">
-                <Image
-                  alt="Breathing app icon"
-                  className="rounded-full w-10 h-11 bg-black"
-                  src="https://heroui.com/images/breathing-app-icon.jpeg"
-                />
-                <div className="flex flex-col">
-                  <p className="text-tiny text-white/60">Brief notice description</p>
-                </div>
-              </div>
-              <Button radius="full" size="sm">
-                More Info
-              </Button>
-            </CardFooter>
-          </Card>
+                <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100 w-full">
+                  <div className="flex flex-grow gap-2 items-center">
+                    <div className="flex flex-col">
+                      <p className="text-tiny text-white/100">Budget needed: ${notice.act_bugdet}</p>
+                    </div>
+                  </div>
+                  <Button radius="full" size="sm">
+                    More info
+                  </Button>
+                </CardFooter>
+              </Card>
+            );
+          })}
         </div>
       </section>
     </DefaultLayout>
