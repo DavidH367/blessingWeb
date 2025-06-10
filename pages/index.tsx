@@ -26,6 +26,10 @@ export default function IndexPage() {
   const [selectedNotice, setSelectedNotice] = useState<any>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  const [ministries, setMinistries] = useState<any[]>([]);
+  const [currentMinistry, setCurrentMinistry] = useState(0);
+  const [modalMinistry, setModalMinistry] = useState<any>(null);
+  const { isOpen: isOpenMinistry, onOpen: onOpenMinistry, onClose: onCloseMinistry } = useDisclosure();
 
   useEffect(() => {
     const fetchNotices = async () => {
@@ -37,6 +41,25 @@ export default function IndexPage() {
     };
     fetchNotices();
   }, []);
+
+  // useEffect para cargar ministerios
+  useEffect(() => {
+    const fetchMinistries = async () => {
+      const q = query(collection(db, "ministries"), orderBy("date", "desc"));
+      const querySnapshot = await getDocs(q);
+      const docs = querySnapshot.docs.map(doc => doc.data());
+      setMinistries(docs);
+    };
+    fetchMinistries();
+  }, []);
+
+  // Funciones para el carrusel
+  const handlePrevMinistry = () => {
+    setCurrentMinistry((prev) => (prev === 0 ? ministries.length - 1 : prev - 1));
+  };
+  const handleNextMinistry = () => {
+    setCurrentMinistry((prev) => (prev === ministries.length - 1 ? 0 : prev + 1));
+  };
 
   const handlePrev = (cardIdx: number) => {
     setImageIndexes(prev =>
@@ -93,16 +116,15 @@ export default function IndexPage() {
             <p className="text-shadow-lg text-white text-left text-lg sm:text-xl md:text-2xl">
               Matthew 28 and Acts 1:8
             </p>
-            <Button
-              isExternal
-              as={Link}
-              className="text-sm font-normal text-default-600 bg-default-100"
+            <a
               href={siteConfig.links.sponsor}
-              startContent={<HeartFilledIcon className="text-danger" />}
-              variant="flat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-sm font-normal text-default-600 bg-default-100 px-4 py-2 rounded-xl shadow hover:bg-default-200 transition"
             >
+              <HeartFilledIcon className="text-danger mr-2" />
               Support
-            </Button>
+            </a>
           </div>
         </div>
       </div>
@@ -123,86 +145,117 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 justify-items-center p-6">
-        <Card className="max-w-[400px]">
-          <CardHeader className="flex gap-3">
-            <Image
-              alt="EMIH"
-              height={120}
-              radius="sm"
-              src="../logo_emih.png"
-              width={160}
-            />
-            <div className="flex flex-col">
-              <p className="text-md">Intercultural Missions School of Honduras</p>
-              <p className="text-small text-default-500">Lema</p>
-            </div>
-          </CardHeader>
-          <Divider />
-          <CardBody>
-            <p>IMSH is a school created to contribute to the integral formation of men and women called to go to the unreached (Romans 10:14-15).</p>
-          </CardBody>
-          <Divider />
-          <CardFooter>
-            <Link isExternal showAnchorIcon href="https://github.com/heroui-inc/heroui">
-              See more about IMSH...
-            </Link>
-          </CardFooter>
-        </Card>
 
 
-        <Card className="max-w-[400px]">
-          <CardHeader className="flex gap-3">
-            <Image
-              alt="NLP"
-              height={120}
-              radius="sm"
-              src="../nlp_logo_rectangular.png"
-              width={160}
-            />
-            <div className="flex flex-col">
-              <p className="text-md">New Life Project</p>
-              <p className="text-small text-default-500">Lema</p>
-            </div>
-          </CardHeader>
-          <Divider />
-          <CardBody>
-            <p>NLP is a school that seeks to form and guide children to grow up with Christ-like character, empowering them to follow their God-given passions and purpose.</p>
-          </CardBody>
-          <Divider />
-          <CardFooter>
-            <Link isExternal showAnchorIcon href="https://github.com/heroui-inc/heroui">
-              See more about NLP...
-            </Link>
-          </CardFooter>
-        </Card>
+      <div className="relative w-full max-w-xl mx-auto mb-20">
+        <h2
+            className="text-blue-900 text-xl md:text-4xl font-extrabold text-center "
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
+            }}
+          >
+            Our Ministries
+          </h2>
+        {ministries.length > 0 && (
+          <Card className="max-w-[600px] mx-auto transition-all duration-500">
+            <CardHeader className="flex gap-3 flex-col items-center">
+              <Image
+                alt={ministries[currentMinistry].ministry_name}
 
-        <Card className="max-w-[400px]">
-          <CardHeader className="flex gap-3">
-            <Image
-              alt="BMC"
-              height={120}
-              radius="sm"
-              src="../logo_bethesda.jpg"
-              width={160}
-            />
-            <div className="flex flex-col">
-              <p className="text-md">Bethesda Medical Center</p>
-              <p className="text-small text-default-500">Lema</p>
-            </div>
-          </CardHeader>
-          <Divider />
-          <CardBody>
-            <p>Brief description: Make beautiful websites regardless of your design experience.</p>
-          </CardBody>
-          <Divider />
-          <CardFooter>
-            <Link isExternal showAnchorIcon href="https://github.com/heroui-inc/heroui">
-              See more about BMC...
-            </Link>
-          </CardFooter>
-        </Card>
+                radius="sm"
+                src={ministries[currentMinistry].logo_url}
+                className="object-contain mx-auto max-h-56"
+              />
+              <div className="flex flex-col items-center">
+                <p className="text-md font-bold">{ministries[currentMinistry].ministry_name}</p>
+                <p className="text-small text-default-500">{ministries[currentMinistry].mision}</p>
+              </div>
+            </CardHeader>
+            <Divider />
+            <CardBody>
+              <p>{ministries[currentMinistry].description}</p>
+            </CardBody>
+            <Divider />
+            <CardFooter className="flex justify-between">
+              <Button
+                className="rounded-xl bg-blue-600 text-white"
+                onPress={() => {
+                  setModalMinistry(ministries[currentMinistry]);
+                  onOpenMinistry();
+                }}
+              >
+                Ver más
+              </Button>
+              <div className="flex gap-2">
+                <Button
+                  isIconOnly
+                  size="sm"
+                  className="rounded-full bg-gray-200"
+                  onPress={handlePrevMinistry}
+                  aria-label="Anterior"
+                >
+                  &#8249;
+                </Button>
+                <Button
+                  isIconOnly
+                  size="sm"
+                  className="rounded-full bg-gray-200"
+                  onPress={handleNextMinistry}
+                  aria-label="Siguiente"
+                >
+                  &#8250;
+                </Button>
+              </div>
+            </CardFooter>
+          </Card>
+        )}
+
+
+        <Modal isOpen={isOpenMinistry} onClose={onCloseMinistry} backdrop="blur" size="3xl" scrollBehavior="inside">
+          <ModalContent>
+            {(onCloseMinistry) => (
+              modalMinistry && (
+                <>
+                  <ModalHeader className="flex flex-col gap-1 text-2xl font-bold">
+                    {modalMinistry.ministry_name}
+                  </ModalHeader>
+                  <ModalBody>
+                    <div className="flex flex-col gap-2 p-2 justify-center items-center">
+                      <Image
+                        alt={ministries[currentMinistry].ministry_name}
+                        radius="sm"
+                        src={ministries[currentMinistry].logo_url}
+                        className="object-contain mx-auto max-h-44 justify-center mb-4"
+                      />
+                      <p><span className="font-bold">Mision:</span> {modalMinistry.mision}</p>
+                      <p><span className="font-bold">Vision:</span> {modalMinistry.vision}</p>
+                      <p><span className="font-bold">Description:</span> {modalMinistry.description}</p>
+                      <p><span className="font-bold">Category:</span> {modalMinistry.category}</p>
+                      <p><span className="font-bold">Leader:</span> {modalMinistry.leader}</p>
+                      <p>
+                        <span className="font-bold">Monthly Budget:</span>
+                        <span className="text-green-600 font-bold">
+                          {" $"}
+                          {Number(modalMinistry.budget).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                        </span>
+                      </p>                      <p><span className="font-bold">Start Date:</span> {modalMinistry.date && new Date(modalMinistry.date.seconds * 1000).toLocaleDateString()}</p>
+                    </div>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="danger" variant="light" onPress={onCloseMinistry}>
+                      Cerrar
+                    </Button>
+                  </ModalFooter>
+                </>
+              )
+            )}
+          </ModalContent>
+        </Modal>
       </div>
+
+
+
       <div className="relative min-h-[700px] sm:min-h[1000px] md:h-[800px] h-auto">
         <div className="absolute inset-0 bg-blue-900 z-10"></div>
         <Image

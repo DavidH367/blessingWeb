@@ -50,5 +50,6 @@ export const siteConfig = {
     docs: "https://heroui.com",
     discord: "https://discord.gg/9b6yyZKmH4",
     sponsor: "https://xmainc-bloom.kindful.com/?campaign=1295532",
+    nlp:"https://xmainc-bloom.kindful.com/?campaign=1295533",
   },
 };
