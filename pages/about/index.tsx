@@ -92,8 +92,8 @@ export default function DocsPage() {
             />
             <h3 className="text-lg md:text-xl font-bold mt-4">Community</h3>
             <p className="text-sm md:text-base mt-2">
-              The true Gospel is lived out with consistency between what we say and what we do. That’s why, in every circumstance,
-              we follow Jesus&apos; example to genuinely connect with people.
+              The true Gospel is lived out with consistency between what we say and what we do. That is why, in every circumstance,
+              we follow Jesus example to genuinely connect with people.
             </p>
           </div>
           <div className="flex flex-col items-center text-center">

@@ -44,7 +44,7 @@ export default function DocsPage() {
               <FiPhone className="mr-2" /> <span className="font-bold">Telephone :</span><span>+504 9999-9999</span> 
             </p>
             <p className="flex flex-col sm:flex-row items-center justify-start text-lg sm:text-xl md:text-2xl py-4 sm:py-6 tracking-normal px-2 sm:px-0">
-              <FiMail className="mr-2" /> <span className="font-bold">EMail :</span> blessingtothenations@gmail.com
+              <FiMail className="mr-2" /> <span className="font-bold">EMail :</span> <span>blessingtothenations@gmail.com</span>
             </p>
             <p className="flex flex-col sm:flex-row items-center justify-start text-lg sm:text-xl md:text-2xl py-4 sm:py-6 tracking-normal px-2 sm:px-0">
               <FiMapPin className="mr-2" /> <span className="font-bold">Location</span>
