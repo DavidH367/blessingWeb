@@ -1,7 +1,5 @@
-import { FC, useState, useEffect } from "react";
-
+import { FC} from "react";
 import { SunFilledIcon } from "@/components/icons";
-
 export interface ThemeSwitchProps {
   className?: string;
 

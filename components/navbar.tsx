@@ -8,11 +8,9 @@ import {
   NavbarMenuItem,
 } from "@heroui/navbar";
 import { Button } from "@heroui/button";
-import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
 import { link as linkStyles } from "@heroui/theme";
-import { Divider } from "@heroui/divider";
 import NextLink from "next/link";
 import clsx from "clsx";
 
@@ -84,7 +82,7 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      {/* Menú móvil */}
+
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <NavbarMenuToggle />
       </NavbarContent>

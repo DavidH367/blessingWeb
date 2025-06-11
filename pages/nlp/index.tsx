@@ -1,5 +1,3 @@
-import { Link } from "@heroui/link";
-
 import { Card, CardHeader, CardFooter, Image, Button, Chip } from "@heroui/react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/react"; // Asegúrate de que estos imports sean correctos
 import { siteConfig } from "@/config/site";
@@ -11,7 +9,6 @@ import { useEffect, useState } from "react";
 import { collection, query, where, orderBy, limit, startAfter, getDocs, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
-
 export default function NlpPage() {
   const [children, setChildren] = useState<{ id: string;[key: string]: any }[]>([]);
   const [lastVisible, setLastVisible] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
@@ -22,7 +19,7 @@ export default function NlpPage() {
   // Estado para el modal y el alumno seleccionado
   const [isOpen, setIsOpen] = useState(false);
   const [selectedAlumno, setSelectedAlumno] = useState<any>(null);
-
+  
   const fetchChildren = async (nextPage = false, reset = false) => {
     setLoading(true);
     try {

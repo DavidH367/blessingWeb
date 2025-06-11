@@ -1,11 +1,8 @@
 import { Image } from "@heroui/react";
 import DefaultLayout from "@/layouts/default";
-import { useEffect, useState } from "react";
 import { FiPhone, FiMail, FiMapPin, FiCreditCard } from "react-icons/fi"; // Importa los iconos
 
-
 export default function DocsPage() {
-
   return (
     <DefaultLayout>
       <div className="relative opacity-90">
@@ -44,7 +41,7 @@ export default function DocsPage() {
           <div className="container max-w-full flex-grow tracking-wide pb-32 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
             <p className="text-center text-justify font-bold text-3xl">Contact Information</p>
             <p className="flex flex-col sm:flex-row items-center justify-start text-lg sm:text-xl md:text-2xl py-4 sm:py-6 tracking-normal px-2 sm:px-0">
-              <FiPhone className="mr-2" /> <span className="font-bold">Telephone :</span><a>+504 9999-9999</a> 
+              <FiPhone className="mr-2" /> <span className="font-bold">Telephone :</span><span>+504 9999-9999</span> 
             </p>
             <p className="flex flex-col sm:flex-row items-center justify-start text-lg sm:text-xl md:text-2xl py-4 sm:py-6 tracking-normal px-2 sm:px-0">
               <FiMail className="mr-2" /> <span className="font-bold">EMail :</span> blessingtothenations@gmail.com
@@ -70,9 +67,9 @@ export default function DocsPage() {
         <div className="container max-w-full flex-grow tracking-wide pb-32 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
 
           <p className="text-center text-justify text-3xl py-6 tracking-normal flex items-center justify-start">
-            <FiCreditCard className="mr-2" /> <a className="font-bold">Donation Information:</a>
+            <FiCreditCard className="mr-2" /> <span className="font-bold">Donation Information:</span>
           </p>
-          <p className="text-center text-justify text-xl py-6 tracking-normal"><a className="font-bold">Online Donation</a>: through this page, with Paypal you will be able to make your donation securely with credit card and prepaid cards.</p>
+          <p className="text-center text-justify text-xl py-6 tracking-normal"><span className="font-bold">Online Donation</span>: through this page, with Paypal you will be able to make your donation securely with credit card and prepaid cards.</p>
         </div>
       </section>
     </DefaultLayout>

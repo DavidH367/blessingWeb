@@ -1,4 +1,3 @@
-import { Link } from "@heroui/link";
 import { Card, CardHeader, CardBody, CardFooter, Image, Button, Chip, Divider } from "@heroui/react";
 import { siteConfig } from "@/config/site";
 import DefaultLayout from "@/layouts/default";
@@ -6,7 +5,7 @@ import {
   HeartFilledIcon,
 } from "@/components/icons";
 import { useEffect, useState } from "react";
-import { collection, query, where, orderBy, limit, startAfter, getDocs, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
+import { collection, query, where, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import {
   Modal,
@@ -35,7 +34,7 @@ export default function IndexPage() {
     const fetchNotices = async () => {
       const q = query(collection(db, "news"), where("type", "==", "Necesidad"), orderBy("date", "desc"), limit(3));
       const querySnapshot = await getDocs(q);
-      const docs = querySnapshot.docs.map(doc => doc.data());
+      const docs = querySnapshot.docs.map((doc) => doc.data());
       setNotices(docs);
       setImageIndexes(Array(docs.length).fill(0));
     };
@@ -128,7 +127,6 @@ export default function IndexPage() {
           </div>
         </div>
       </div>
-
       <section className="py-32">
         <div className="container max-w-full tracking-wide  py-8 px-6 md:pb-8 md:py-14 md:px-10 lg:px-20 xl:px-40 2xl:px-[400px] flex flex-col items-center justify-center text-center z-10 ">
           <h2
@@ -145,8 +143,6 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-
-
       <div className="relative w-full max-w-xl mx-auto mb-20">
         <h2
             className="text-blue-900 text-xl md:text-4xl font-extrabold text-center "
@@ -210,8 +206,6 @@ export default function IndexPage() {
             </CardFooter>
           </Card>
         )}
-
-
         <Modal isOpen={isOpenMinistry} onClose={onCloseMinistry} backdrop="blur" size="3xl" scrollBehavior="inside">
           <ModalContent>
             {(onCloseMinistry) => (
@@ -253,9 +247,6 @@ export default function IndexPage() {
           </ModalContent>
         </Modal>
       </div>
-
-
-
       <div className="relative min-h-[700px] sm:min-h[1000px] md:h-[800px] h-auto">
         <div className="absolute inset-0 bg-blue-900 z-10"></div>
         <Image
@@ -280,7 +271,6 @@ export default function IndexPage() {
             What we do
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-20 m-10">
-
             <div className="flex flex-col items-center text-center">
               <Image
                 src="/serve.png"
@@ -293,7 +283,6 @@ export default function IndexPage() {
                 to do what Jesus did—bringing faith and hope to those who most need to experience the love of God.
               </p>
             </div>
-
             <div className="flex flex-col items-center text-center">
               <Image
                 src="/connect.png"
@@ -305,10 +294,6 @@ export default function IndexPage() {
                 Jesus is our supreme model of missionary leadership. He taught that loving your neighbor is at the core of the Gospel.
               </p>
             </div>
-
-
-
-
             <div className="flex flex-col items-center text-center">
               <Image
                 src="/educate.png"
@@ -321,8 +306,6 @@ export default function IndexPage() {
                 A well-prepared missionary is equipped to face the challenges of the mission field with strong faith and a willing heart.
               </p>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -405,7 +388,6 @@ export default function IndexPage() {
               </Card>
             );
           })}
-
           <Modal isOpen={isOpen} onClose={onClose} backdrop="blur" size="5xl" scrollBehavior="inside">
             <ModalContent>
               {(onClose) => (
@@ -416,7 +398,7 @@ export default function IndexPage() {
                     </ModalHeader>
                     <ModalBody>
                       <div className="">
-                        <span className="text-xl"><a className="font-bold">Ministry: {selectedNotice.minName}</a> </span>
+                        <span className="text-xl"><span className="font-bold">Ministry: {selectedNotice.minName}</span> </span>
                       </div>
                       <div className="">
                         <div className="">
@@ -426,8 +408,8 @@ export default function IndexPage() {
                         </div>
                         <div className="">
                           <span className="">
-                            <a className="font-bold">Budged needed:</a>
-                            <a className="text-green-600 font-bold">$ {Number(selectedNotice.act_bugdet).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</a>
+                            <span className="font-bold">Budged needed:</span>
+                            <span className="text-green-600 font-bold">$ {Number(selectedNotice.act_bugdet).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                           </span>
                         </div>
                         <span className="font-bold">Address:</span> {selectedNotice.zone}
