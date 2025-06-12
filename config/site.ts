@@ -19,7 +19,7 @@ export const siteConfig = {
     },
     {
       label: "Donate",
-      href: "/aboutsa",
+      href: "/docs",
     },
   ],
   navMenuItems: [
@@ -41,7 +41,7 @@ export const siteConfig = {
     },
     {
       label: "Donate",
-      href: "/team",
+      href: "/docs",
     }
   ],
   links: {

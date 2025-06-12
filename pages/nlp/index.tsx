@@ -71,37 +71,25 @@ export default function NlpPage() {
     }
   };
 
-  const handleNextPage = () => {
-    setPage((prev) => prev + 1);
-    fetchChildren(true, true); // Reemplazar los datos al avanzar de página
-  };
-
-  const handlePrevPage = () => {
-    if (page > 1) {
-      setPage((prev) => prev - 1);
-      fetchChildren(false, true); // Reemplazar los datos al retroceder de página
-    }
-  };
-
   useEffect(() => {
     fetchChildren();
   }, []);
 
   const slides = [
     {
-      image: "../img_home.png",
+      image: "https://firebasestorage.googleapis.com/v0/b/mebnapp3.appspot.com/o/imagenes%2FimagenesWeb%2F13.png?alt=media&token=7a776184-ef55-49f0-9d15-8844e4d7dab3",
       title: "Sponsor a Child",
       description:
         "New Life Project School is a ministry that transforms children through education and faith.",
     },
     {
-      image: "../img_second.png",
+      image: "https://firebasestorage.googleapis.com/v0/b/mebnapp3.appspot.com/o/imagenes%2FimagenesWeb%2F27.png?alt=media&token=47ed2423-f9ca-4fad-9885-2d910813a363",
       title: "Transform Lives",
       description:
         "Join us in making a difference in the lives of children through education and faith.",
     },
     {
-      image: "../img_third.png",
+      image: "https://firebasestorage.googleapis.com/v0/b/mebnapp3.appspot.com/o/imagenes%2FimagenesWeb%2F25.png?alt=media&token=2f860c65-f93e-488d-8366-9c38992c6e9f",
       title: "Make an Impact",
       description:
         "Your support helps provide education and hope for a brighter future.",
@@ -152,7 +140,7 @@ export default function NlpPage() {
 
   return (
     <DefaultLayout>
-      <div className="relative w-full h-[500px] overflow-hidden">
+      <div className="relative w-full h-[500px] overflow-hidden ">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -172,7 +160,7 @@ export default function NlpPage() {
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 flex items-start justify-start z-10 p-6 sm:p-10 md:p-16 lg:p-32">
+            <div className="absolute inset-0 flex items-center md:items-start justify-start z-10 p-6 sm:p-10 md:p-16 lg:p-32">
               <div className="bg-transparent w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
                 <h1
                   className="text-shadow-lg text-white text-3xl sm:text-4xl md:text-4xl font-extrabold text-left"
@@ -183,7 +171,10 @@ export default function NlpPage() {
                 >
                   {slide.title}
                 </h1>
-                <p className="text-shadow-lg text-white text-left font-semibold text-lg sm:text-xl md:text-2xl mt-4">
+                <p className="text-shadow-lg text-white text-left font-semibold text-lg sm:text-xl md:text-2xl mt-4" style={{
+                    fontFamily: "'Playfair Display', serif",
+                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)",
+                  }}>
                   {slide.description}
                 </p>
                 <a
@@ -202,14 +193,14 @@ export default function NlpPage() {
 
         <Button
           onPress={prevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+          className="absolute left-4 bottom-8 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
         >
           &#8249;
         </Button>
 
         <Button
           onPress={nextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+          className="absolute right-4 bottom-8 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
         >
           &#8250;
         </Button>

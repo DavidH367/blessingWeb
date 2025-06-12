@@ -8,7 +8,7 @@ export default function DocsPage() {
         <div className="absolute inset-0 bg-blue-500 opacity-65 z-10"></div>
         <Image
           alt="Main Image"
-          src="../about_.jpeg"
+          src="https://firebasestorage.googleapis.com/v0/b/mebnapp3.appspot.com/o/imagenes%2FimagenesWeb%2Fabout_impact.png?alt=media&token=b061bcba-5c8c-4aa2-991e-6b5fc26fddacg"
           radius="none"
           width="100%"
           height="400px"
@@ -38,13 +38,21 @@ export default function DocsPage() {
         <div className="absolute inset-0 bg-blue-500 opacity-35 z-10"></div>
         <Image
           alt="Main Image"
-          src="../about_impact.png"
+          src="https://firebasestorage.googleapis.com/v0/b/mebnapp3.appspot.com/o/imagenes%2FimagenesWeb%2F30.png?alt=media&token=bc666350-d09a-430f-8613-4ec2cd2cce2a"
           radius="none"
           width="100%"
           height="600px"
-          style={{ objectFit: "cover", opacity: 0.6 }}
+          style={{ objectFit: "cover", opacity: 0.8 }}
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 h-[600px]">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 h-[600px]"
+          style={{
+            background: "rgba(30, 58, 138, 0.35)", // azul semitransparente
+            borderRadius: "0.5rem",
+            backdropFilter: "blur(2px)",
+            WebkitBackdropFilter: "blur(2px)", // para Safari
+            boxShadow: "0 4px 32px 0 rgba(0,0,0,0.25)",
+            border: "1px solid rgba(255,255,255,0.18)",
+          }}>
           <h1
             className="text-white text-3xl md:text-6xl font-extrabold"
             style={{
@@ -54,11 +62,18 @@ export default function DocsPage() {
           >
             Blessing to the Nations and its impact
           </h1>
-          <div className="container max-w-full tracking-wide py-8 px-6 md:pb-8 md:py-14 md:px-10 lg:px-20 xl:px-40 2xl:px-[400px]">
-            <p className="font-bold text-lg md:text-2xl text-white">
+          <div className="container max-w-full tracking-wide py-8 px-6 md:pb-8 md:py-14 md:px-10 lg:px-20 xl:px-40 2xl:px-[400px]"
+          >
+            <p className="font-bold text-lg md:text-2xl text-white" style={{
+              fontFamily: "'Playfair Display', serif",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
+            }}>
               We aim to contribute to the spiritual and social development of children, youth, and adults transformed by the Word of God.
             </p>
-            <p className="text-justify text-md md:text-xl py-6 tracking-normal text-white">
+            <p className="text-justify text-md md:text-xl py-6 tracking-normal text-white" style={{
+              fontFamily: "'Playfair Display', serif",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
+            }}>
               We believe the effect of this movement will be multiplicative and generational,
               leaving behind a lasting legacy of hope in Christ among those who live without God, without faith, and without hope.
             </p>

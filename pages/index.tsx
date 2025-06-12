@@ -91,7 +91,7 @@ export default function IndexPage() {
       <div className="relative w-full h-[550px] overflow-hidden">
         <Image
           alt="Main Image"
-          src="../MainBTTN.png"
+          src="https://firebasestorage.googleapis.com/v0/b/mebnapp3.appspot.com/o/imagenes%2FimagenesWeb%2FMainBTTN.png?alt=media&token=53aa0118-2238-4ff3-9e2e-6a16ef191791"
           radius="none"
           width="100%"
           height="700px"
@@ -251,7 +251,7 @@ export default function IndexPage() {
         <div className="absolute inset-0 bg-blue-900 z-10"></div>
         <Image
           alt="Main Image"
-          src="../whatwedo.jpg"
+          src="https://firebasestorage.googleapis.com/v0/b/mebnapp3.appspot.com/o/imagenes%2FimagenesWeb%2Fwhatwedo.jpg?alt=media&token=55dc734f-d482-49bb-a4c8-8e431d4614e9"
           radius="none"
           width="100%"
           height="1000px"

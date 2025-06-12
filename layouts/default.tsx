@@ -23,7 +23,7 @@ export default function DefaultLayout({
           
           <Image
             alt="Main Image"
-            src="../img_footer.png"
+            src="https://firebasestorage.googleapis.com/v0/b/mebnapp3.appspot.com/o/imagenes%2FimagenesWeb%2Fimg_footer.png?alt=media&token=d19de185-d742-417c-a1c9-8378040cbdc4"
             radius="none"
             width="100%"
             height="100px"

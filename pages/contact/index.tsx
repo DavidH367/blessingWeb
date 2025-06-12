@@ -8,11 +8,11 @@ export default function DocsPage() {
       <div className="relative opacity-90">
         <Image
           alt="Main Image"
-          src="../img_main.png"
+          src="https://firebasestorage.googleapis.com/v0/b/mebnapp3.appspot.com/o/imagenes%2FimagenesWeb%2Fwhatwedo.jpg?alt=media&token=55dc734f-d482-49bb-a4c8-8e431d4614e9"
           radius="none"
           width="100%"
           height="400px"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", objectPosition: "50% 70%" }}
         />
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <h1
