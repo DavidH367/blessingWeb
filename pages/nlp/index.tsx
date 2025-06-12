@@ -71,6 +71,18 @@ export default function NlpPage() {
     }
   };
 
+  const handleNextPage = () => {
+    setPage((prev) => prev + 1);
+    fetchChildren(true, true); // Reemplazar los datos al avanzar de página
+  };
+  
+  const handlePrevPage = () => {
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+      fetchChildren(false, true); // Reemplazar los datos al retroceder de página
+    }
+  };
+
   useEffect(() => {
     fetchChildren();
   }, []);
@@ -207,8 +219,8 @@ export default function NlpPage() {
       </div>
       <section>
         <div className="container max-w-full flex-grow tracking-wide pb-24 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
-          <p className="text-center text-justify font-bold text-2xl">Proyecto Nueva Vida exists to shape and guide children so that they grow with Christ-like character, empowering them to follow their God-given passions and purpose.</p>
-          <p className="text-center text-justify text-xl py-6 tracking-normal">The New Life Project is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
+          <p className="text-left font-bold text-2xl">Proyecto Nueva Vida exists to shape and guide children so that they grow with Christ-like character, empowering them to follow their God-given passions and purpose.</p>
+          <p className="text-left text-xl py-6 tracking-normal">The New Life Project is a ministry whose vision is to transform children in an integral way and in this way change their lives and give them the necessary knowledge so that these children can change their lives firstly in the spiritual area and collaterally in the rest, and so that these children can be examples in their country, their family, and their community.</p>
         </div>
       </section>
       <div className="relative opacity-90 ">
@@ -223,7 +235,7 @@ export default function NlpPage() {
             Sponsor a Child
           </h2>
 
-          <section className="container mx-auto py-10 px-4 mb-20">
+          <section className="container mx-auto py-10 px-4 mb-4">
             <div className="flex flex-wrap justify-center gap-6">
               {children.map((child) => (
                 <Card key={child.id} isFooterBlurred className="w-52 h-full">
@@ -257,6 +269,22 @@ export default function NlpPage() {
                   </CardFooter>
                 </Card>
               ))}
+            </div>
+            <div className="flex justify-center gap-4 mt-6">
+              <Button
+                disabled={page === 1 || loading}
+                onPress={handlePrevPage}
+                className="bg-gray-300 text-black px-4 py-2 rounded"
+              >
+                Previous
+              </Button>
+              <Button
+                disabled={loading}
+                onPress={handleNextPage}
+                className="bg-gray-300 text-black px-4 py-2 rounded"
+              >
+                Next
+              </Button>
             </div>
 
           </section>
@@ -338,7 +366,7 @@ export default function NlpPage() {
       </div>
       <section>
         <div className="container max-w-full flex-grow tracking-wide pb-24 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
-          <p className="text-center text-justify font-bold text-4xl">Sponsoring a child at New Life Project School: why is it so important?</p>
+          <p className="text-center  font-bold text-3xl">Sponsoring a child at New Life Project School: <br/>why is it so important?</p>
           <p className="text-center text-justify text-xl py-6 tracking-normal "><a className="text-blue-600 after:content-['_↗']" href="https://xmainc-bloom.kindful.com/?campaign=1295533">
             The New Life Project</a> Sponsoring a child from PNV not only transforms their life forever,
             it also opens their heart to the love and hope that can only be found in Jesus Christ.
@@ -353,7 +381,7 @@ export default function NlpPage() {
             <img
               src="/4.png"
               alt="Icon 4"
-              className="w-25 h-20 md:w-24 md:h-24"
+              className="w-32 h-32 md:w-28 md:h-28"
             />
             <h3 className="text-lg md:text-xl font-bold mt-4">Kids</h3>
             <p className="text-sm md:text-base mt-2">
@@ -367,7 +395,7 @@ export default function NlpPage() {
             <img
               src="/5.png"
               alt="Icon 5"
-              className="w-20 h-25 md:w-24 md:h-24"
+              className="w-32 h-32 md:w-28 md:h-28"
             />
             <h3 className="text-lg md:text-xl font-bold mt-4">Jesus</h3>
             <p className="text-sm md:text-base mt-2">
@@ -380,7 +408,7 @@ export default function NlpPage() {
             <img
               src="/6.png"
               alt="Icon 6"
-              className="w-22 h-20 md:w-24 md:h-24"
+              className="w-32 h-32 md:w-28 md:h-28"
             />
             <h3 className="text-lg md:text-xl font-bold mt-4">School</h3>
             <p className="text-sm md:text-base mt-2">

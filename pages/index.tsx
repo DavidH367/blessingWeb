@@ -104,7 +104,7 @@ export default function IndexPage() {
               className="text-white text-6xl font-extrabold text-left"
               style={{
                 fontFamily: "'Playfair Display', serif",
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)",
               }}
             >
               Bringing blessing to all Nations
@@ -127,8 +127,8 @@ export default function IndexPage() {
           </div>
         </div>
       </div>
-      <section className="py-32">
-        <div className="container max-w-full tracking-wide  py-8 px-6 md:pb-8 md:py-14 md:px-10 lg:px-20 xl:px-40 2xl:px-[400px] flex flex-col items-center justify-center text-center z-10 ">
+      <section className="py-24 bg-white">
+        <div className="container max-w-full tracking-wide  py-2 px-6 md:pb-8 md:py-14 md:px-10 lg:px-20 xl:px-40 2xl:px-[400px] flex flex-col items-center justify-center text-center z-10 ">
           <h2
             className="text-blue-900 text-2xl md:text-6xl font-extrabold text-center "
             style={{
@@ -138,23 +138,23 @@ export default function IndexPage() {
           >
             Our Mision
           </h2>
-          <p className="text-justify text-xl md:text-3xl py-6 tracking-normal text-black">
+          <p className="text-center text-xl md:text-3xl py-2 tracking-normal text-black tracking-tight">
             To carry out practical missions centered on Christ, moving in faith and love, in service to people and communities in need.
           </p>
         </div>
       </section>
       <div className="relative w-full max-w-xl mx-auto mb-20">
         <h2
-            className="text-blue-900 text-xl md:text-4xl font-extrabold text-center "
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
-            }}
-          >
-            Our Ministries
-          </h2>
+          className="text-blue-900 text-2xl md:text-6xl font-extrabold text-center py-4 pb-14"
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)", // Sombra alrededor del texto
+          }}
+        >
+          BTTN Ministries
+        </h2>
         {ministries.length > 0 && (
-          <Card className="max-w-[600px] mx-auto transition-all duration-500">
+          <Card className="max-w-[500px] mx-auto transition-all duration-500">
             <CardHeader className="flex gap-3 flex-col items-center">
               <Image
                 alt={ministries[currentMinistry].ministry_name}
@@ -181,7 +181,7 @@ export default function IndexPage() {
                   onOpenMinistry();
                 }}
               >
-                Ver más
+                See More
               </Button>
               <div className="flex gap-2">
                 <Button
@@ -312,12 +312,12 @@ export default function IndexPage() {
       <section>
         <div className="container max-w-full flex-grow tracking-wide pb-6 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
           <p className="text-center text-justify font-bold text-4xl">Recent Updates</p>
-          <p className="text-center text-justify text-xl py-6 tracking-normal "><a className="text-blue-600 after:content-['_↗']"
+          <p className="text-left text-xl py-6 tracking-normal"><a className="text-blue-600 after:content-['_↗']"
             href="https://xmainc-bloom.kindful.com/?campaign=1295532">
             Blessing to the Nations Ministry</a> we have identified several key needs for the proper functioning of our organization.
             These include urgent repairs and improvements to the facilities where the children receive classes,
             in order to provide a safe and dignified learning environment.
-            In addition, we continue to need support in general areas such as administrative supplies,
+            <br/><br/>In addition, we continue to need support in general areas such as administrative supplies,
             basic maintenance and educational resources. We are deeply grateful for your continued support in this mission.</p>
         </div>
       </section>

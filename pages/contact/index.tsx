@@ -27,9 +27,9 @@ export default function DocsPage() {
         </div>
       </div>
       <section>
-        <div className="container max-w-full flex-grow tracking-wide pb-32 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
-          <p className="text-center text-justify font-bold text-3xl">Do you have questions, comments or would you like to order information material?</p>
-          <p className="text-center text-justify text-xl py-6 tracking-normal">Talk to us: here is our address, phone number and email address.
+        <div className="container max-w-full flex-grow tracking-wide pb-32 py-14 px-4 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
+          <p className="text-center font-bold text-2xl">Do you have questions, comments or would you like to order information material?</p>
+          <p className="text-center text-justify text-xl py-8 tracking-normal">Talk to us: here is our address, phone number and email address.
             Call us at the phone number that suits your needs or send us an email to ask for more information.
             We are at your disposal and we will be happy to help you.Intercultural Missions School of Honduras</p>
         </div>
@@ -39,7 +39,7 @@ export default function DocsPage() {
         <div className="absolute inset-0 bg-blue-500 opacity-15 z-10"></div>
         <section>
           <div className="container max-w-full flex-grow tracking-wide pb-32 py-14 px-10 md:px-20 lg:px-50 xl:px-40 2xl:px-80">
-            <p className="text-center text-justify font-bold text-3xl">Contact Information</p>
+            <p className="text-center font-bold text-3xl">Contact Information</p>
             <p className="flex flex-col sm:flex-row items-center justify-start text-lg sm:text-xl md:text-2xl py-4 sm:py-6 tracking-normal px-2 sm:px-0">
               <FiPhone className="mr-2" /> <span className="font-bold">Telephone :</span><span>+504 9999-9999</span> 
             </p>
