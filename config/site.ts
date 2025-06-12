@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "BTTN",
+  name: "Blessing to the Nations Ministry",
   description: "Bringing Blessing to all Nations.",
   navItems: [
     
